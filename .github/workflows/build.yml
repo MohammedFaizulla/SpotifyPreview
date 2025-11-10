@@ -1,0 +1,30 @@
+name: Debug build CI
+
+on:
+  push:
+    branches:
+      - MohammedFaizulla-patch-1
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout repository
+      uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+    - name: change mode of gradle file
+      run: chmod +x gradlew
+    - name : run assemble debug
+      run: ./gradlew assembleDebug
+    - name: upload to artifactory
+      uses: actions/upload-artifact@v4
+      with:
+        name: app-debug
+        path: app/build/outputs/apk/app-debug.apk
+

@@ -3,7 +3,7 @@ name: Debug build CI
 on:
   push:
     branches:
-      - MohammedFaizulla-patch-1
+      - Master
 
   workflow_dispatch:
 
